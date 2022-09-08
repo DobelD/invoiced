@@ -14,14 +14,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  List<ListInv> Inv = [
-    ListInv(inv: "INV001", namaApk: "JUDI ONLINE", client: "RIZQI"),
-    ListInv(inv: "INV002", namaApk: "JUDI GACOR", client: "RIZQI"),
-    ListInv(inv: "INV003", namaApk: "JUDI HALAL", client: "RIZQI"),
-    ListInv(inv: "INV004", namaApk: "JUDI HARAM", client: "RIZQI"),
-    ListInv(inv: "INV005", namaApk: "JUDI CUAN ", client: "RIZQI"),
-  ];
-
+  final controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
         body: ListView.builder(
-            itemCount: Inv.length,
+            itemCount: controller.Inv.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
@@ -54,15 +47,15 @@ class _HomeViewState extends State<HomeView> {
                       borderRadius: BorderRadius.circular(7.0)),
                   child: ListTile(
                     title: Text(
-                      Inv[index].inv.toString(),
+                      controller.Inv[index].inv.toString(),
                       style: subText,
                     ),
                     subtitle: Text(
-                      Inv[index].namaApk.toString(),
+                      controller.Inv[index].namaApk.toString(),
                       style: liteText,
                     ),
                     trailing: Text(
-                      Inv[index].client.toString(),
+                      controller.Inv[index].client.toString(),
                       style: liteText,
                     ),
                   ),
@@ -70,11 +63,4 @@ class _HomeViewState extends State<HomeView> {
               );
             }));
   }
-}
-
-class ListInv {
-  String? inv;
-  String? namaApk;
-  String? client;
-  ListInv({required this.inv, required this.namaApk, required this.client});
 }
