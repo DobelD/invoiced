@@ -41,22 +41,54 @@ class _HomeViewState extends State<HomeView> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                child: Card(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7.0)),
-                  child: ListTile(
-                    title: Text(
-                      controller.Inv[index].inv.toString(),
-                      style: subText,
-                    ),
-                    subtitle: Text(
-                      controller.Inv[index].namaApk.toString(),
-                      style: liteText,
-                    ),
-                    trailing: Text(
-                      controller.Inv[index].client.toString(),
-                      style: liteText,
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text(
+                              controller.Inv[index].inv.toString(),
+                              style: subText,
+                            ),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  child: Text(
+                                    'Hapus',
+                                    style: sub3Text,
+                                  )),
+                              TextButton(
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  child: Text(
+                                    'Download',
+                                    style: sub3Text,
+                                  )),
+                            ],
+                          );
+                        });
+                  },
+                  child: Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7.0)),
+                    child: ListTile(
+                      title: Text(
+                        controller.Inv[index].inv.toString(),
+                        style: subText,
+                      ),
+                      subtitle: Text(
+                        controller.Inv[index].namaApk.toString(),
+                        style: liteText,
+                      ),
+                      trailing: Text(
+                        controller.Inv[index].client.toString(),
+                        style: liteText,
+                      ),
                     ),
                   ),
                 ),
